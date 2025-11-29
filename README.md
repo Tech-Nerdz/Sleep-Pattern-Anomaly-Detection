@@ -39,3 +39,21 @@ Hardware:
 Laptop/desktop with webcam or external camera.​
 
 If you want, the next step can be a short “How to run” section for your README (installation, commands, etc.).
+
+# Environment Setup
+
+# conda setup 
+conda create -n sleep python=3.10 -y
+conda activate sleep
+
+or 
+
+py -3.9 -m venv sleep
+sleep\Scripts\activate
+
+# if run in gpu 
+nvidia-smi
+
+# dependencies
+pip install -r requirements.txt
+
