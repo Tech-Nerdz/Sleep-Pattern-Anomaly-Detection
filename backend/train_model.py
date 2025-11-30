@@ -23,7 +23,8 @@ train = datagen.flow_from_directory(
     target_size=IMG_SIZE,
     batch_size=BATCH_SIZE,
     class_mode="categorical",
-    subset="training"
+    subset="training",
+    shuffle=True
 )
 
 val = datagen.flow_from_directory(
@@ -31,41 +32,49 @@ val = datagen.flow_from_directory(
     target_size=IMG_SIZE,
     batch_size=BATCH_SIZE,
     class_mode="categorical",
-    subset="validation"
+    subset="validation",
+    shuffle=True
 )
 
 # -----------------------------------
-# CNN MODEL (Single Unified Model)
+# CNN MODEL (Fixed Input Shape)
 # -----------------------------------
 model = Sequential([
-    Conv2D(32, (3,3), activation="relu", input_shape=(IMG_SIZE[0], IMG_SIZE[1], 3)),
-    MaxPooling2D(2,2),
+    Conv2D(32, (3, 3), activation='relu', input_shape=(IMG_SIZE[0], IMG_SIZE[1], 3)),
+    MaxPooling2D(2, 2),
 
-    Conv2D(64, (3,3), activation="relu"),
-    MaxPooling2D(2,2),
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D(2, 2),
 
-    Conv2D(128, (3,3), activation="relu"),
-    MaxPooling2D(2,2),
+    Conv2D(128, (3, 3), activation='relu'),
+    MaxPooling2D(2, 2),
 
     Flatten(),
-    Dense(256, activation="relu"),
+
+    Dense(256, activation='relu'),
     Dropout(0.5),
 
-    Dense(6, activation="softmax")  # 6 CLASSES
+    Dense(5, activation='softmax')   # EXACTLY 5 classes
 ])
 
 model.compile(
-    optimizer=Adam(0.0001),
-    loss="categorical_crossentropy",
-    metrics=["accuracy"]
+    optimizer=Adam(learning_rate=0.0003),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
 )
 
+# -----------------------------------
+# TRAIN
+# -----------------------------------
 history = model.fit(
     train,
     validation_data=val,
     epochs=EPOCHS
 )
 
+# -----------------------------------
+# SAVE
+# -----------------------------------
 os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
 model.save(MODEL_PATH)
 
