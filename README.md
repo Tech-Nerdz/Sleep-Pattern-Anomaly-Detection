@@ -26,7 +26,7 @@ Backend:
 
 2.OpenCV for video frame processing.​
 
-3.MediaPipe for facial and eye landmark detection.​
+3.MediaPipe & PyTorch for facial and eye landmark detection.​
 
 4.NumPy (and optionally SciPy / scikit-learn) for EAR calculation and anomaly logic.​
 
@@ -41,19 +41,19 @@ Laptop/desktop with webcam or external camera.​
 If you want, the next step can be a short “How to run” section for your README (installation, commands, etc.).
 
 # Environment Setup
-
-# conda setup 
-conda create -n sleep python=3.10 -y
-conda activate sleep
-
-or 
-
-py -3.9 -m venv sleep
-sleep\Scripts\activate
-
-# if run in gpu 
-nvidia-smi
-
-# dependencies
+cd backend
+python -m venv env
+env\Scripts\activate
+pip install --upgrade pip
 pip install -r requirements.txt
 
+# if run in gpu 
+#verify 
+nvidia-smi 
+nvcc --version
+# run in cpu skip above steps
+
+# run command
+python train_model.py        # trains & saves model
+python app.py                # starts Flask server 
+npm start                    # react services
