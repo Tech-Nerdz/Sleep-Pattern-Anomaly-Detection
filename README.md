@@ -54,6 +54,6 @@ nvcc --version
 # run in cpu skip above steps
 
 # run command
-python train_model.py        # trains & saves model
-python app.py                # starts Flask server 
-npm start                    # react services
+python train_model.py       # trains & saves model
+python app.py               # starts Flask server 
+npm start                   # react services
