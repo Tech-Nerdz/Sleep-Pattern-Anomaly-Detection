@@ -16,7 +16,7 @@ from tqdm import tqdm   # pip install tqdm
 DATASET_DIR     = "datasets/sleep_dataset"
 IMG_SIZE        = (128, 128)
 BATCH_SIZE      = 64
-EPOCHS          = 50
+EPOCHS          = 40
 MODEL_SAVE_PATH = "models/sleep_model.pth"
 
 # -------------------------------
