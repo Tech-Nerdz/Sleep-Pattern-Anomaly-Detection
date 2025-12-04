@@ -56,4 +56,5 @@ nvcc --version
 # run command
 python train_model.py       # trains & saves model
 python app.py               # starts Flask server 
+uvicorn app:app --reload
 npm start                   # react services
