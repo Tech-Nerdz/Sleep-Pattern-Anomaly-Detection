@@ -1,29 +1,35 @@
-import { useEffect, useState } from "react";
+import React from 'react';
 
 function App() {
-  const [state, setState] = useState("Loading...");
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      fetch("http://localhost:5000/predict")
-        .then(res => res.json())
-        .then(data => setState(data.state));
-    }, 500);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Sleep Anomaly Detection</h1>
+    <div style={{
+      background: '#000',
+      color: '#fff',
+      minHeight: '100vh',
+      textAlign: 'center',
+      fontFamily: 'Arial',
+      padding: '20px'
+    }}>
+      <h1 style={{fontSize: '3.5rem', color: '#00ff88', marginBottom: '20px'}}>
+        Sleep Pattern Anomaly Detection
+      </h1>
 
-      <img 
-        src="http://localhost:5000/video" 
-        alt="camera" 
-        width="600"
-        style={{ borderRadius: "10px" }}
+      <img
+        src="http://localhost:8000/video"
+        alt="Live Detection"
+        style={{
+          width: '90%',
+          maxWidth: '900px',
+          borderRadius: '20px',
+          border: '8px solid #00ff88',
+          boxShadow: '0 0 30px #00ff88'
+        }}
       />
 
-      <h2 style={{ marginTop: "20px" }}>Status: {state}</h2>
+      <div style={{marginTop: '20px', fontSize: '2rem', color: '#ccc'}}>
+        Normal blinking → <strong style={{color:'#00ff88'}}>ACTIVE</strong><br/>
+        Eyes closed long / yawn → <strong style={{color:'#ff0066'}}>SLEEPY</strong>
+      </div>
     </div>
   );
 }
