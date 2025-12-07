@@ -38,7 +38,7 @@ Hardware:
 
 Laptop/desktop with webcam or external camera.​
 
-If you want, the next step can be a short “How to run” section for your README (installation, commands, etc.).
+If you want the next step can be a short “How to run” section for your README (installation, commands, etc.).
 
 # Environment Setup
 cd backend
@@ -55,6 +55,6 @@ nvcc --version
 
 # run command
 python train_model.py       # trains & saves model
-python app.py               # starts Flask server 
-uvicorn app:app --reload
+python app.py               
+uvicorn app:app --reload    # start model it automatically starts a flask server
 npm start                   # react services
